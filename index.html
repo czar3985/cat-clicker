@@ -10,15 +10,32 @@
   <!-- Metas for SEO -->
   <meta name="description" content="Cat clicker application" />
   <meta name="keywords" content="cat, clicker" />
+
+  <!-- Styling for the page -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
 </head>
 
 <body>
-  <h1>Cat Clicker</h1>
-  <p>I will count how many times you clicked the picture of the cat below.</p>
-  <br /><br />
-  <img class="cat-image" src="img/cat_640.jpg" alt="Kitten looking at a plant" />
-  <br /><br />
-  <p>Number of clicks: <span class="click-counter">0</span></p>
+  <header>
+    <h1>Cat Clicker</h1>
+    <p>I will count how many times you clicked the picture of the cats below.</p>
+  </header>
+  <br />
+  <main class="cat-section">
+    <div class="cat-tile">
+      <p>This is <span id="cat-name-1"></span></p>
+      <img class="cat-image" id="cat-image-1" src="img/cat_640.jpg" alt="Kitten looking at a plant" />
+      <br />
+      <p>Number of clicks: <span id="click-counter-1">0</span></p>
+    </div>
+    <div class="cat-tile">
+      <p>This is <span id="cat-name-2"></span></p>
+      <img class="cat-image" id="cat-image-2" src="img/cat_640.jpg" alt="Kitten looking at a plant" />
+      <br />
+      <p>Number of clicks: <span id="click-counter-2">0</span></p>
+    </div>
+  </main>
 
   <!--jQuery script-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"

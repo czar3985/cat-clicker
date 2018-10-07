@@ -1,0 +1,56 @@
+/*
+ *
+ * Common
+ *
+ *
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px Roboto, Raleway;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+}
+
+/*
+ *
+ * Cat Section
+ *
+ *
+*/
+
+.cat-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cat-tile {
+  width: 100%;
+}
+
+.cat-image {
+  max-width: 300px;
+}
+
+/*
+ *
+ * Styling for responsiveness
+ *
+ *
+*/
+@media screen and (min-width: 650px) {
+  .cat-tile {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  main, header {
+    width: 884px; /* 900px minus body padding */
+    margin: auto;
+  }
+}

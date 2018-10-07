@@ -1,7 +1,7 @@
 # Cat Clicker
 
-The application shows a picture of a cat and number of clicks to the 
-cat picture.
+The application shows pictures of 2 cats and number of clicks to the 
+cat pictures.
 
 ----
 
