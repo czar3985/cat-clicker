@@ -13,7 +13,7 @@ body {
   font: 14px Roboto, Raleway;
   width: 100%;
   margin: 0;
-  padding: 8px;
+  padding: 20px;
 }
 
 /*
@@ -28,12 +28,46 @@ body {
   flex-wrap: wrap;
 }
 
+.cat-selector {
+  width: 25%;
+}
+
+.cat-list {
+  list-style: none;
+  padding: 0;
+  margin-right: 8px;
+}
+
+.cat-link {
+  margin-bottom: 0.5em;
+  padding: 5px;
+  border-radius: 0.5em;
+}
+
+.cat-link:hover {
+  cursor: pointer;
+}
+
+.specific-cat {
+  width: 75%;
+}
+
 .cat-tile {
   width: 100%;
+  display: none;
 }
 
 .cat-image {
-  max-width: 300px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.selected-cat {
+  background-color: lightgray;
+}
+
+.displayed-cat {
+  display: block;
 }
 
 /*
@@ -42,15 +76,28 @@ body {
  *
  *
 */
-@media screen and (min-width: 650px) {
-  .cat-tile {
-    width: 50%;
+
+@media screen and (min-width: 400px) {
+  .cat-selector {
+    width: 20%;
+  }
+
+  .specific-cat {
+    width: 80%;
+  }
+
+  .cat-list {
+    margin-right: 20px;
+  }
+
+  .cat-link {
+    padding: 10px;
   }
 }
 
 @media screen and (min-width: 900px) {
   main, header {
-    width: 884px; /* 900px minus body padding */
+    width: 860px; /* 900px minus body padding */
     margin: auto;
   }
 }
