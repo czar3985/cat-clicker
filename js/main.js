@@ -47,7 +47,7 @@ $(function () {
     var view = {
         initSidebar: function () {
             // grab elements and html for use in render
-            this.$catList = $('.cat-list');
+            this.catList = $('.cat-list');
             this.catNameTemplate = $('script[data-template="catName"]').html();
 
             // todo: event listener to listen for cat selection
@@ -56,14 +56,24 @@ $(function () {
         },
 
         renderSidebar: function () {
+            var fragment = document.createDocumentFragment();
+            var catNameTemplate = this.catNameTemplate;
 
+            this.cats.forEach(function (cat) {
+                var $catLink = catNameTemplate
+                    .replace(/{{id}}/g, cat.id)
+                    .replace(/{{name}}/g, cat.name);
+                $(fragment).append($catLink);
+            });
+            $(this.catList).append(fragment);
         },
 
         initDisplayArea: function () { },
 
         renderDisplayArea: function () { },
 
-        init: function () {
+        init: function () {;
+            this.cats = octopus.getAllCats();
             this.initSidebar();
             // todo: select first cat in list
         }
