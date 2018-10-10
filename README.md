@@ -1,7 +1,7 @@
 # Cat Clicker
 
-The application shows pictures of 2 cats and number of clicks to the 
-cat pictures.
+The application shows pictures of several cats and number of clicks to the 
+cat pictures. It is implemented using the Model-View-Octopus design pattern.
 
 ----
 
