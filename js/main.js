@@ -31,7 +31,7 @@ $(function () {
         },
 
         getSelectedCat: function () {
-            octopus.getCat(model.selectedCat);
+            this.getCat(model.selectedCat);
         },
 
         setSelectedCat: function (id) {
@@ -40,24 +40,33 @@ $(function () {
 
         init: function () {
             model.init();
-            view.initSidebar();
-            view.initDisplayArea();
+            view.init();
         }
     };
 
     var view = {
         initSidebar: function () {
-            var fragment = document.createDocumentFragment();
-            view.renderSidebar(fragment);
+            // grab elements and html for use in render
+            this.$catList = $('.cat-list');
+            this.catNameTemplate = $('script[data-template="catName"]').html();
+
+            // todo: event listener to listen for cat selection
+
+            this.renderSidebar();
         },
 
-        renderSidebar: function (fragment) { },
+        renderSidebar: function () {
 
-        initDisplayArea: function (fragment) {
-            view.renderDisplayArea();
         },
 
-        renderDisplayArea: function () { }
+        initDisplayArea: function () { },
+
+        renderDisplayArea: function () { },
+
+        init: function () {
+            this.initSidebar();
+            // todo: select first cat in list
+        }
     };
 
     octopus.init();
