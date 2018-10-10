@@ -35,6 +35,23 @@
     </section>
   </main>
 
+  <!--Template for cat selection at the sidebar-->
+  <script type="text/template" data-template="pizza">
+    <li class="cat-link" data-id="{{id}}">
+      {{name}}
+    </li>
+  </script>
+
+  <!--Template for the viewing area-->
+  <script type="text/template" data-template="pizza">
+    <div class="cat-tile">
+      <p>This is {{name}}.</p>
+      <img class="cat-image" src="{{image}}" alt="Cat picture" />
+      <br />
+      <p class="clicks-text"> Number of clicks: {{clicks}}</p>
+    </div>
+  </script>
+
   <!--jQuery script-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
