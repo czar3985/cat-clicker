@@ -2,39 +2,40 @@ $(function () {
 
     var model = {
         cats: [],
-
         selectedCat: 0,
-
-        getCats: function () {
-            return this.cats;
-        },
-
-        getSelectedCat: function () {
-            return this.selectedCat;
-        },
-
-        setSelectedCat: function (catIndex) {
-            this.selectedCat = catIndex;
-        },
 
         init: function () {
             this.cats = [
-                { name: 'Steve', clicks: 0, image: 'img/adorable_640.jpg' },
-                { name: 'Tony', clicks: 0, image: 'img/cat_640.jpg' },
-                { name: 'Thor', clicks: 0, image: 'img/kitty_640.jpg' },
-                { name: 'Bruce', clicks: 0, image: 'img/sleepy_640.jpg' },
-                { name: 'Clint', clicks: 0, image: 'img/treetop_640.jpg' }
+                { id: 1, name: 'Steve', clicks: 0, image: 'img/adorable_640.jpg' },
+                { id: 2, name: 'Tony', clicks: 0, image: 'img/cat_640.jpg' },
+                { id: 3, name: 'Thor', clicks: 0, image: 'img/kitty_640.jpg' },
+                { id: 4, name: 'Bruce', clicks: 0, image: 'img/sleepy_640.jpg' },
+                { id: 5, name: 'Clint', clicks: 0, image: 'img/treetop_640.jpg' }
             ];
+
+            this.selectedCat = 1;
         }
     };
 
     var octopus = {
-        getCats: function () {
-            return model.getCats();
+        getAllCats: function () {
+            return model.cats;
+        },
+
+        getCat: function (id) {
+            var cat = model.cats.find(item => {
+                return item.id === id;
+            });
+
+            return cat; // undefined if id is not found
         },
 
         getSelectedCat: function () {
-            return model.getSelectedCat();
+            octopus.getCat(model.selectedCat);
+        },
+
+        setSelectedCat: function (id) {
+            model.selectedCat = id;
         },
 
         init: function () {
