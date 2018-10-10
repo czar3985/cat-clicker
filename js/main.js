@@ -30,11 +30,13 @@ $(function () {
             return cat; // undefined if id is not found
         },
 
-        getSelectedCat: function () {
-            this.getCat(model.selectedCat);
+        getSelectedCatId: function () {
+            return this.getCat(model.selectedCat).id;
         },
 
-        setSelectedCat: function (id) {
+        setSelectedCatId: function (id) {
+            // change selection in view first before updating model
+            view.renderSelection(id);
             model.selectedCat = id;
         },
 
@@ -47,15 +49,20 @@ $(function () {
     var view = {
         initSidebar: function () {
             // grab elements and html for use in render
-            this.catList = $('.cat-list');
+            this.$catList = $('.cat-list');
             this.catNameTemplate = $('script[data-template="catName"]').html();
 
-            // todo: event listener to listen for cat selection
+            // event listener to listen for cat selection
+            this.$catList.on('click', '.cat-link', function () {
+                var id = $(this).data().id;
+                octopus.setSelectedCatId(id);
+            });
 
             this.renderSidebar();
         },
 
         renderSidebar: function () {
+            // populate the list at the sidebar
             var fragment = document.createDocumentFragment();
             var catNameTemplate = this.catNameTemplate;
 
@@ -65,17 +72,35 @@ $(function () {
                     .replace(/{{name}}/g, cat.name);
                 $(fragment).append($catLink);
             });
-            $(this.catList).append(fragment);
+            $(this.$catList).append(fragment);
+        },
+
+        renderSelection: function (newCat) {
+            var prevCat = octopus.getSelectedCatId();
+            var prevCatLinkElement = this.$catList.find('[data-id=' + prevCat.toString() + ']');
+            var newCatLinkElement = this.$catList.find('[data-id=' + newCat.toString() + ']');
+
+            // When new cat selected, change highlights at the sidebar
+            if (prevCat !== newCat) {
+                $(prevCatLinkElement).toggleClass('selected-cat');
+                $(newCatLinkElement).toggleClass('selected-cat');
+            }
+            else if (!($(newCatLinkElement).hasClass('selected-cat')))
+                $(newCatLinkElement).toggleClass('selected-cat');
+
+            // fix the display area
         },
 
         initDisplayArea: function () { },
 
         renderDisplayArea: function () { },
 
-        init: function () {;
+        init: function () {
             this.cats = octopus.getAllCats();
             this.initSidebar();
-            // todo: select first cat in list
+
+            // select first cat in list
+            view.renderSelection(octopus.getSelectedCatId());
         }
     };
 
