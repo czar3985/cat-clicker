@@ -145,12 +145,25 @@ $(function () {
         },
 
         initAdminArea: function () {
-            // todo: Event listener for button clicks
+            this.adminArea = $('.admin-area');
+
+            $("button").click(function () {
+                var clickedElement = $(this).attr('id');
+
+                if (clickedElement === 'admin-button')
+                    octopus.changeAdminMode(true);
+                else if (clickedElement === 'cancel-button')
+                    octopus.changeAdminMode(false);
+            });
         },
 
-        renderAdminArea: function () { },
+        renderAdminArea: function () {
+            $(this.adminArea).css('display', 'block');
+        },
 
-        hideAdminArea: function () { },
+        hideAdminArea: function () {
+            $(this.adminArea).css('display', 'none');
+        },
 
         init: function () {
             this.cats = octopus.getAllCats();
@@ -158,6 +171,8 @@ $(function () {
 
             // select first cat in list
             this.renderSelection(octopus.getSelectedCatId());
+
+            this.initAdminArea();
         }
     };
 

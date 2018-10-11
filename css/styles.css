@@ -85,8 +85,8 @@ button {
   display: none;
 }
 
-.cancel-button,
-.submit-button {
+#cancel-button,
+#submit-button {
   margin-top: 10px;
   display: inline;
 }
