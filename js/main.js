@@ -35,9 +35,10 @@ $(function () {
         },
 
         setSelectedCatId: function (id) {
-            // change selection in view first before updating model
-            view.renderSelection(id);
+            // unselect in UI first, set new id in model then render
+            view.unselectCat(model.selectedCat);
             model.selectedCat = id;
+            view.renderSelection(id);
         },
 
         init: function () {
@@ -75,18 +76,17 @@ $(function () {
             $(this.$catList).append(fragment);
         },
 
-        renderSelection: function (newCat) {
-            var prevCat = octopus.getSelectedCatId();
-            var prevCatLinkElement = this.$catList.find('[data-id=' + prevCat.toString() + ']');
-            var newCatLinkElement = this.$catList.find('[data-id=' + newCat.toString() + ']');
+        unselectCat: function (catId) {
+            var catLinkElement = this.$catList.find('[data-id=' + catId.toString() + ']');
+            if ($(catLinkElement).hasClass('selected-cat'))
+                $(catLinkElement).toggleClass('selected-cat');
+        },
 
-            // When new cat selected, change highlights at the sidebar
-            if (prevCat !== newCat) {
-                $(prevCatLinkElement).toggleClass('selected-cat');
-                $(newCatLinkElement).toggleClass('selected-cat');
-            }
-            else if (!($(newCatLinkElement).hasClass('selected-cat')))
-                $(newCatLinkElement).toggleClass('selected-cat');
+        renderSelection: function (catId) {
+            var catLinkElement = this.$catList.find('[data-id=' + catId.toString() + ']');
+
+            if (!$(catLinkElement).hasClass('selected-cat'))
+                $(catLinkElement).toggleClass('selected-cat');
 
             // fix the display area
         },
