@@ -159,6 +159,12 @@ $(function () {
 
         renderAdminArea: function () {
             $(this.adminArea).css('display', 'block');
+
+            // get selected cat details and put as values in the input boxes
+            var cat = octopus.getCat(model.selectedCat);
+            $('#name').val(cat.name);
+            $('#imageUrl').val(cat.image);
+            $('#clicks').val(cat.clicks);
         },
 
         hideAdminArea: function () {
