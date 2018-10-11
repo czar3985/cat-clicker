@@ -40,6 +40,9 @@ $(function () {
             view.unselectCat(model.selectedCat);
             model.selectedCat = id;
             view.renderSelection(id);
+
+            if (model.isAdmin)
+                view.renderAdminArea();
         },
 
         incrementClicks: function (id) {
@@ -47,6 +50,9 @@ $(function () {
                 if (item.id === id) {
                     item.clicks++;
                     view.updateClicks(id, item.clicks);
+
+                    if (model.isAdmin)
+                        view.renderAdminArea();
                 }
             });
         },
