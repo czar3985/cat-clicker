@@ -3,6 +3,7 @@ $(function () {
     var model = {
         cats: [],
         selectedCat: 0,
+        isAdmin: false,
 
         init: function () {
             this.cats = [
@@ -48,6 +49,17 @@ $(function () {
                     view.updateClicks(id, item.clicks);
                 }
             });
+        },
+
+        changeAdminMode: function (adminMode) {
+            if (model.isAdmin !== adminMode) {
+                model.isAdmin = adminMode;
+
+                if (adminMode)
+                    view.renderAdminArea();
+                else
+                    view.hideAdminArea();
+            }
         },
 
         init: function () {
@@ -131,6 +143,14 @@ $(function () {
             var $elementToChange = this.$catArea.find('.clicks-text');
             $elementToChange.text('Number of clicks: ' + clicks.toString());
         },
+
+        initAdminArea: function () {
+            // todo: Event listener for button clicks
+        },
+
+        renderAdminArea: function () { },
+
+        hideAdminArea: function () { },
 
         init: function () {
             this.cats = octopus.getAllCats();
