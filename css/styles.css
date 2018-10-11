@@ -67,6 +67,45 @@ body {
 
 /*
  *
+ * Admin Feature
+ *
+ *
+*/
+
+button {
+  display: block;
+  padding: 10px;
+  border-radius: 0.5em;
+  border-color: gray;
+  margin-bottom: 10px;
+}
+
+.admin-area {
+  width: 100%;
+  display: none;
+}
+
+.cancel-button,
+.submit-button {
+  margin-top: 10px;
+  display: inline;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+#clicks {
+  width: 70px;
+}
+
+/*
+ *
  * Styling for responsiveness
  *
  *
