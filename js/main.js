@@ -40,6 +40,7 @@ $(function () {
             view.unselectCat(model.selectedCat);
             model.selectedCat = id;
             view.renderSelection(id);
+            view.initDisplayArea();
 
             if (model.isAdmin)
                 view.renderAdminArea();
@@ -66,6 +67,22 @@ $(function () {
                 else
                     view.hideAdminArea();
             }
+        },
+
+        updateCatDetails: function (name, imageUrl, clicks) {
+            // update model
+            model.cats.find(item => {
+                if (item.id === model.selectedCat) {
+                    item.name = name;
+                    item.image = imageUrl;
+                    item.clicks = clicks;
+                }
+            });
+
+            // update UI
+            view.renderSidebar();
+            view.renderSelection(model.selectedCat);
+            view.renderDisplayArea();
         },
 
         init: function () {
@@ -100,7 +117,7 @@ $(function () {
                     .replace(/{{name}}/g, cat.name);
                 $(fragment).append($catLink);
             });
-            $(this.$catList).append(fragment);
+            $(this.$catList).html(fragment);
         },
 
         unselectCat: function (catId) {
@@ -114,9 +131,6 @@ $(function () {
 
             if (!$(catLinkElement).hasClass('selected-cat'))
                 $(catLinkElement).toggleClass('selected-cat');
-
-            // fix the display area
-            this.initDisplayArea(catId);
         },
 
         initDisplayArea: function (catId) {
@@ -160,6 +174,13 @@ $(function () {
                     octopus.changeAdminMode(true);
                 else if (clickedElement === 'cancel-button')
                     octopus.changeAdminMode(false);
+                else if (clickedElement === 'submit-button') {
+                    var newName = $('#name').val();
+                    var newImage = $('#imageUrl').val();
+                    var newClicks = $('#clicks').val();
+
+                    octopus.updateCatDetails(newName, newImage, newClicks);
+                }
             });
         },
 
@@ -179,11 +200,11 @@ $(function () {
 
         init: function () {
             this.cats = octopus.getAllCats();
-            this.initSidebar();
 
+            this.initSidebar();
             // select first cat in list
             this.renderSelection(octopus.getSelectedCatId());
-
+            this.initDisplayArea(octopus.getSelectedCatId());
             this.initAdminArea();
         }
     };
