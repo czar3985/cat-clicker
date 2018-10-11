@@ -54,7 +54,6 @@ body {
 
 .cat-tile {
   width: 100%;
-  display: none;
 }
 
 .cat-image {
@@ -64,10 +63,6 @@ body {
 
 .selected-cat {
   background-color: lightgray;
-}
-
-.displayed-cat {
-  display: block;
 }
 
 /*

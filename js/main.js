@@ -41,6 +41,8 @@ $(function () {
             view.renderSelection(id);
         },
 
+        incrementClicks: function (id) {},
+
         init: function () {
             model.init();
             view.init();
@@ -89,18 +91,41 @@ $(function () {
                 $(catLinkElement).toggleClass('selected-cat');
 
             // fix the display area
+            this.initDisplayArea(catId);
         },
 
-        initDisplayArea: function () { },
+        initDisplayArea: function (catId) {
+            // grab elements and html for use in render
+            this.$catArea = $('.specific-cat');
+            this.catDisplayTemplate = $('script[data-template="catDisplay"]').html();
 
-        renderDisplayArea: function () { },
+            // event listener to listen for image clicks
+            this.$catArea.on('click', '.cat-image', function () {
+                var id = $(this).data().id;
+                octopus.incrementClicks(id);
+            });
+
+            this.renderDisplayArea();
+        },
+
+        renderDisplayArea: function () {
+            var catDisplayTemplate = this.catDisplayTemplate;
+            var currentCat = octopus.getCat(octopus.getSelectedCatId());
+
+            var node = catDisplayTemplate
+                .replace(/{{name}}/g, currentCat.name)
+                .replace(/{{image}}/g, currentCat.image)
+                .replace(/{{id}}/g, currentCat.id)
+                .replace(/{{clicks}}/g, currentCat.clicks);
+            $(this.$catArea).html(node);
+        },
 
         init: function () {
             this.cats = octopus.getAllCats();
             this.initSidebar();
 
             // select first cat in list
-            view.renderSelection(octopus.getSelectedCatId());
+            this.renderSelection(octopus.getSelectedCatId());
         }
     };
 
