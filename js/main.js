@@ -41,7 +41,14 @@ $(function () {
             view.renderSelection(id);
         },
 
-        incrementClicks: function (id) {},
+        incrementClicks: function (id) {
+            model.cats.find(item => {
+                if (item.id === id) {
+                    item.clicks++;
+                    view.updateClicks(id, item.clicks);
+                }
+            });
+        },
 
         init: function () {
             model.init();
@@ -100,8 +107,8 @@ $(function () {
             this.catDisplayTemplate = $('script[data-template="catDisplay"]').html();
 
             // event listener to listen for image clicks
-            this.$catArea.on('click', '.cat-image', function () {
-                var id = $(this).data().id;
+            this.$catArea.off().on('click', '.cat-image', function () {
+                var id = $(this).parents('.cat-tile').data().id;
                 octopus.incrementClicks(id);
             });
 
@@ -118,6 +125,11 @@ $(function () {
                 .replace(/{{id}}/g, currentCat.id)
                 .replace(/{{clicks}}/g, currentCat.clicks);
             $(this.$catArea).html(node);
+        },
+
+        updateClicks: function (id, clicks) {
+            var $elementToChange = this.$catArea.find('.clicks-text');
+            $elementToChange.text('Number of clicks: ' + clicks.toString());
         },
 
         init: function () {

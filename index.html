@@ -44,9 +44,9 @@
 
   <!--Template for the viewing area-->
   <script type="text/template" data-template="catDisplay">
-    <div class="cat-tile">
+    <div class="cat-tile" data-id="{{id}}">
       <p>This is {{name}}.</p>
-      <img class="cat-image" src="{{image}}" data-id="{{id}}" alt="Cat picture" />
+      <img class="cat-image" src="{{image}}" alt="Cat picture" />
       <br />
       <p class="clicks-text"> Number of clicks: {{clicks}}</p>
     </div>
